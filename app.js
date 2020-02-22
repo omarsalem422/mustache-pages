@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const app = express();
 const mustacheExpress = require("mustache-express");
 
@@ -7,6 +8,9 @@ app.set("views", "./views");
 app.set("view engine", "mustache");
 
 const PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.json() );
+app.use(bodyParser.urlencoded({extended: false}) );
 
 const user = {
   name: "John Doe",
@@ -29,6 +33,17 @@ app.get("/", (req, res) => {
 });
 
 users = [];
+
+app.get('/add-user', (req,res) => {
+  res.render('add-user')
+});
+
+app.post('/add-user', (req,res) => {
+  let name = req.body.name;
+  let age = req.body.age;
+
+  console.log(name, age)
+});
 
 app.get('/users', (req,res) => {
   res.render('users', {users:users});
