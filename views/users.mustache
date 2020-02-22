@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users Page</title>
+</head>
+<body>
+  <h1>Users Page </h1>
+  <ul>
+    {{#users}}
+      <li> {{name}} - {{age}}
+    {{/users}}
+
+    {{^ users}}
+      <h2> There are no users </h2>
+    {{/users}}
+  </ul>
+</body>
+</html>
