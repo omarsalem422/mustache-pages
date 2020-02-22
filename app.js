@@ -1,10 +1,13 @@
 const express = require("express");
 const bodyParser = require('body-parser');
+const path = require('path');
 const app = express();
 const mustacheExpress = require("mustache-express");
 
-app.engine("mustache", mustacheExpress());
-app.set("views", "./views");
+const VIEWS_PATH = path.join(__dirname, '/views');
+
+app.engine("mustache", mustacheExpress(VIEWS_PATH + '/partials', '.mustache'));
+app.set("views", VIEWS_PATH);
 app.set("view engine", "mustache");
 
 const PORT = process.env.PORT || 3000;
