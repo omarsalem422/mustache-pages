@@ -5,8 +5,10 @@ const app = express();
 const mustacheExpress = require("mustache-express");
 
 const VIEWS_PATH = path.join(__dirname, '/views');
-// http://localhost:3000/site.css
-app.use(express.static('css'));
+// http://localhost:3000/site.css 'css' is an alias it could be anything ...
+app.use('/css', express.static('css'));
+
+app.use('/img', express.static('images'));
 
 app.engine("mustache", mustacheExpress(VIEWS_PATH + '/partials', '.mustache'));
 app.set("views", VIEWS_PATH);
