@@ -4,6 +4,13 @@ const path = require('path');
 const app = express();
 const mustacheExpress = require("mustache-express");
 const userRoutes = require("./routes/users");
+const session = require('express-session');
+
+app.use(session({
+  secret: 'Complex Formula',
+  resave: false,
+  saveUninitialized: true
+}));
 
 const VIEWS_PATH = path.join(__dirname, '/views');
 app.use(bodyParser.json() );
